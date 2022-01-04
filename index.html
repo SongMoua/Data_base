@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>Word counter</title>
+
+     
+
+     
+</head>
+
+<body>
+ 
+    <h1>I will calculate the word length for you!</h1>
+
+    <div id="center">
+
+        <input type="text" id="user_word_input" placeholder="Put your word here">
+        <button id="btn">Calculate word length</button>
+
+        <div id="display_length"></div>
+
+    </div>
+
+    <button id = "clickMe" onclick="setInterval(automate_clicking, 200);">Try me</button>
+
+    <br>
+    <br>
+    <br>
+
+    <table id="myTable">
+        <tr> 
+            <th>Number</th>
+            <th>Item</th>
+            <th>Cost</th>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>Apple</td>
+            <td>$1</td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>Orange</td>
+            <td>$2</td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td>Egg</td>
+            <td>$3</td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td>Banana</td>
+            <td>$1</td>
+        </tr>
+
+    </table>
+
+    <br>
+    <br>
+    <br>
+
+    <label>Name</label> <input id="Namebox" type="text"> <br> <br>
+    <label>RollNo</label> <input id="Rollbox" type="text"> <br> <br>
+    <label>Section</label> <input id="Secbox" type="text"> <br> <br>
+    <label>Gender </label>  <br> <br> 
+        <select id="Genbox">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+    <button id="Insbtn">INSERT</button>
+    <button id="Selbtn">SELECT</button>
+    <button id="Updbtn">UPDATE</button>
+    <button id="Delbtn">DELETE</button>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script> 
+
+    <!--  ********** Fire base configuration codes ************* -->
+
+    <script type="module">
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyAEcG0AEr27vy1az22nFnH_R_XuaXfQaSI",
+          authDomain: "my-web-data.firebaseapp.com",
+          databaseURL: "https://my-web-data-default-rtdb.firebaseio.com",
+          projectId: "my-web-data",
+          storageBucket: "my-web-data.appspot.com",
+          messagingSenderId: "106820424208",
+          appId: "1:106820424208:web:e70e36f442d1fe003e7095",
+          measurementId: "G-EP0EZRLQN5"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import {getDatabase, ref, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"
+
+        const db = getDatabase();
+
+        //--------------------Reference---------------------------//
+
+        var namebox = document.getElementById("Namebox");
+        var rollbox = document.getElementById("Rollbox");
+        var secbox = document.getElementById("Secbox");
+        var genbox = document.getElementById("Genbox");
+
+        var insBtn = document.getElementById("Insbtn");
+        var selBtn = document.getElementById("Selbtn");
+        var updBtn = document.getElementById("Updbtn");
+        var DelBtn = document.getElementById("Delbtn");
+
+       //-----------------Inser Data-------------------------//
+
+       function InsertData(){
+           set(ref(db, "TheStudents/" + rollbox.value),{
+                NameOfStd: namebox.value,
+                RollNo: rollbox.value,
+                Section: secbox.value,
+                Gender: genbox.value
+           })
+           /*
+           .then(() => {
+                alert("Data stored sucessfully");
+           })
+           .catch((error) => {
+                alert("unsuccessful, error" + error);
+           });
+           */
+       }
+       //------------Assign Events to Btns-------------//
+
+       insBtn.addEventListener('click', InsertData);
+
+      </script>
+
+    <script src="main.js"> </script>
+     
+
+</body>
+</html>

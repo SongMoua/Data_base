@@ -1,0 +1,53 @@
+
+
+h1 {
+    text-align: center;
+}
+
+#center{
+    height: 125px;
+    width: 350px;
+    border: 2px solid black;
+    border-radius: 20px; 
+    background-color: rgb(111, 111, 134);
+    margin: auto auto auto auto;
+    padding: 10px 20px;
+}
+
+#display_length{
+    height: 25px;
+    width: 330px;
+    background-color: white;
+    margin: 25px auto;
+    padding-left: 0px;
+    font-size: 24px;
+}
+ 
+#clickMe{
+    display: none;
+}
+
+/* ************************** Table ********************************* */
+#myTable{
+    margin: auto;
+}
+
+table th{
+    text-align: left;
+    background-color: rgb(39, 139, 53);
+    color: white;
+    
+}
+
+table td{
+    border: 1px solid black;
+    padding: 5px 30px;
+}
+
+#myTable{
+    border-collapse: collapse;
+}
+
+table tr:nth-child(odd) td{
+    background-color: #e7edf0;
+}
